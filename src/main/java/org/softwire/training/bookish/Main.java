@@ -1,6 +1,9 @@
 package org.softwire.training.bookish;
 
+import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.core.mapper.reflect.ConstructorMapper;
+import org.softwire.training.bookish.models.database.Book;
 
 import java.sql.*;
 import java.util.Map;
@@ -55,11 +58,17 @@ public class Main {
         System.out.println("\nJDBI method...");
 
         Jdbi jdbi = Jdbi.create(connectionString);
+        Handle handle = jdbi.open();
+        handle.registerRowMapper(ConstructorMapper.factory(Book.class));
+        List<Book> books = handle.createQuery("SELECT * FROM book")
+                        .mapTo(Book.class)
+                        .list();
+        display(books);
+    }
 
-        List<String> names = jdbi.withHandle(handle ->
-                handle.createQuery("SELECT Name FROM book")
-                        .mapTo(String.class)
-                        .list());
-        System.out.println(names);
+    private static void display(List<Book> books) {
+        for (Book book: books) {
+            book.display();
+        }
     }
 }
