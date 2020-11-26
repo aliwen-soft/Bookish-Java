@@ -29,8 +29,6 @@ public class Main {
 
         Connection connection = DriverManager.getConnection(connectionString);
 
-
-
     }
 
     private static void jdbiMethod(String connectionString) {
@@ -39,7 +37,7 @@ public class Main {
         Jdbi jdbi = Jdbi.create(connectionString);
 
         List<String> names = jdbi.withHandle(handle ->
-                handle.createQuery("select Name from book")
+                handle.createQuery("SELECT Name FROM book")
                         .mapTo(String.class)
                         .list());
         System.out.println(names);
