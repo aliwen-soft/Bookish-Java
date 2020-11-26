@@ -2,32 +2,52 @@ package org.softwire.training.bookish;
 
 import org.jdbi.v3.core.Jdbi;
 
+import java.sql.*;
+import java.util.Map;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
 
+
 public class Main {
+
+    public static String getPW(){
+        Map<String, String> env = System.getenv();
+        String pw = env.get("SQLPW");
+        return pw;
+    }
 
     public static void main(String[] args) throws SQLException {
         String hostname = "localhost:3306";
         String database = "bookish";
         String user = "root";
-        String password = System.getenv("SQLPW");
+        String password = getPW();
+
         String connectionString = "jdbc:mysql://" + hostname + "/" + database + "?user=" + user + "&password=" + password + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT&useSSL=false";
 
-//        jdbcMethod(connectionString);
+        jdbcMethod(connectionString);
         jdbiMethod(connectionString);
     }
 
     private static void jdbcMethod(String connectionString) throws SQLException {
         System.out.println("JDBC method...");
-
-        // TODO: print out the details of all the books (using JDBC)
-        // See this page for details: https://docs.oracle.com/javase/tutorial/jdbc/basics/processingsqlstatements.html
-
         Connection connection = DriverManager.getConnection(connectionString);
+
+        String query = "SELECT * FROM BOOK";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                String isbn = rs.getString("isbn");
+                String bookName = rs.getString("Name");
+                String description = rs.getString("Description");
+                System.out.println(isbn + ", " + bookName) ;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
