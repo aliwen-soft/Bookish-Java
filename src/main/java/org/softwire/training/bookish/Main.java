@@ -1,6 +1,7 @@
 package org.softwire.training.bookish;
 
 import org.jdbi.v3.core.Jdbi;
+import org.softwire.training.bookish.models.database.Book;
 
 import java.sql.*;
 import java.util.Map;
@@ -56,10 +57,16 @@ public class Main {
 
         Jdbi jdbi = Jdbi.create(connectionString);
 
-        List<String> names = jdbi.withHandle(handle ->
-                handle.createQuery("SELECT Name FROM book")
-                        .mapTo(String.class)
+        List<Book> books = jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM book")
+                        .map(new BookMapper())
                         .list());
-        System.out.println(names);
+        display(books);
+    }
+
+    private static void display(List<Book> books) {
+        for (Book book: books) {
+            book.display();
+        }
     }
 }
