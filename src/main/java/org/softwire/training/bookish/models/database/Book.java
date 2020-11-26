@@ -7,9 +7,9 @@ import java.beans.ConstructorProperties;
 
 
 public class Book {
-    private final String isbn;
-    private final String name;
-    private final String description;
+    private String isbn;
+    private String name;
+    private String description;
 
     public String getIsbn() {
         return isbn;
@@ -23,10 +23,15 @@ public class Book {
         return description;
     }
 
-    @ConstructorProperties({"isbn", "name", "description"})
-    public Book(String isbn, String name, String description) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setDescription(String description) {
         this.description = description;
     }
 

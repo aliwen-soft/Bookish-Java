@@ -28,14 +28,14 @@ public class BookController {
     }
 
     @RequestMapping("")
-    ModelAndView bookPage() {
+    ModelAndView booksPage() {
 
         List<Book> allBooks = bookService.getAllBooks();
 
         BookPageModel bookPageModel = new BookPageModel();
         bookPageModel.setBooks(allBooks);
 
-        return new ModelAndView("book", "model", bookPageModel);
+        return new ModelAndView("books", "model", bookPageModel);
     }
 
     @RequestMapping("/add-book")
