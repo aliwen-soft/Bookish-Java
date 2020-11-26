@@ -5,18 +5,19 @@ import org.jdbi.v3.core.Jdbi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 
 
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-        String hostname = "localhost";
+        String hostname = "localhost:3306";
         String database = "bookish";
-        String user = "bookish";
-        String password = "bookish";
+        String user = "root";
+        String password = System.getenv("SQLPW");
         String connectionString = "jdbc:mysql://" + hostname + "/" + database + "?user=" + user + "&password=" + password + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT&useSSL=false";
 
-        jdbcMethod(connectionString);
+//        jdbcMethod(connectionString);
         jdbiMethod(connectionString);
     }
 
@@ -28,20 +29,17 @@ public class Main {
 
         Connection connection = DriverManager.getConnection(connectionString);
 
-
-
     }
 
     private static void jdbiMethod(String connectionString) {
         System.out.println("\nJDBI method...");
 
-        // TODO: print out the details of all the books (using JDBI)
-        // See this page for details: http://jdbi.org
-        // Use the "Book" class that we've created for you (in the models.database folder)
-
         Jdbi jdbi = Jdbi.create(connectionString);
 
-
-
+        List<String> names = jdbi.withHandle(handle ->
+                handle.createQuery("SELECT Name FROM book")
+                        .mapTo(String.class)
+                        .list());
+        System.out.println(names);
     }
 }
