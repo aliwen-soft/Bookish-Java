@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.AboutPageModel"-->
+
+<head>
+    <title>Bookish - Authors</title>
+
+    <link rel="stylesheet" href="/styles/general.css"/>
+    <link rel="stylesheet" href="/styles/navbar.css"/>
+    <link rel="stylesheet" href="/styles/about.css"/>
+</head>
+
+<body>
+
+<div th:replace="fragments/navbar :: navbar">
+    <!-- This element is replaced by the HTML in fragments/navbar.html -->
+</div>
+
+<div class="container">
+    <h2>List of Authors:</h2>
+
+    <div th:each="author : ${model.authors}">
+        <span th:text="${author.name}"></span>
+
+        <a th:href="${'/authors/delete-author?authorId=' + author.id}" class="delete-button">delete</a>
+    </div>
+
+    <h2>Add an author:</h2>
+    <form th:action="@{/authors/add-author}" method="post">
+        <div class="add-tech-row">
+            <label>
+                <span>Name: </span>
+                <input type="text" name="name">
+            </label>
+        </div>
+        <div class="add-tech-row">
+            <span><!-- spacer --></span>
+            <input type="submit" value="Add author" />
+        </div>
+    </form>
+</div>
+
+</body>
+
+
+</html>
