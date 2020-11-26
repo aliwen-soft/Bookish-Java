@@ -2,17 +2,17 @@ package org.softwire.training.bookish.models.database;
 
 public class Book {
     private String isbn;
-    private String Name;
-    private String Description;
+    private String name;
+    private String description;
 
-    public Book(String isbn, String Name, String Description) {
+    public Book(String isbn, String name, String description) {
         this.isbn = isbn;
-        this.Name = Name;
-        this.Description = Description;
+        this.name = name;
+        this.description = description;
     }
 
 
     public void display() {
-        System.out.println(isbn + ", " + Name + ", " + Description);
+        System.out.println(isbn + ", " + name + ", " + description);
     }
 }
