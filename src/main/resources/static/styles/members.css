@@ -1,0 +1,79 @@
+
+h2 {
+    font-family: "Segoe UI", sans-serif;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+table, tr, td {
+  border: 2px solid black;
+  border-collapse: collapse;
+  align-items: center;
+
+}
+tr, td {
+  padding: 10 px;
+  text-align: center;
+}
+
+.member-list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.member {
+    width: 30%;
+    background-color: #e9ecef;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.delete-button {
+    margin-top: 10px;
+
+    background-color: indianred;
+    border-radius: 15px;
+    padding: 3px 8px 3px 8px;
+
+    font-family: "Segoe UI", sans-serif;
+    font-size: 10px;
+    color: white;
+    text-decoration: none;
+    opacity: 0.5;
+}
+.delete-button:hover {
+    opacity: 1;
+}
+
+
+.add-member-row {
+    padding: 5px 0;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.add-member-row label {
+    display: flex;
+    flex-direction: row;
+}
+.add-member-row span {
+    min-width: 100px;
+    display: inline-block;
+}
+
+.add-member-row input[type="text"] {
+    flex-grow: 1;
+}
+.add-member-row input[type="submit"] {
+    background-color: transparent;
+    border: 1px solid dodgerblue;
+    border-radius: 15px;
+    padding: 5px 15px;
+}
