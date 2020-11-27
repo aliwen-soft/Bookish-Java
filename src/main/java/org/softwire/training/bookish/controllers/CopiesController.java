@@ -29,6 +29,7 @@ public class CopiesController {
 
         CopiesPageModel copiesPageModel = new CopiesPageModel();
         copiesPageModel.setCopies(allCopies);
+        copiesPageModel.setBookName(copiesService.getBookName(isbn));
 
         return new ModelAndView("book-copies", "model", copiesPageModel);
     }

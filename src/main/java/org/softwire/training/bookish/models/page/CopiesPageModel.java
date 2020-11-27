@@ -10,4 +10,5 @@ import java.util.List;
 @Setter
 public class CopiesPageModel {
     private List<BookCopy> copies;
+    private String bookName;
 }
