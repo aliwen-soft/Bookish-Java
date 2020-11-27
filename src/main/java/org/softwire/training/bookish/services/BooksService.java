@@ -50,4 +50,13 @@ public class BooksService extends DatabaseService{
                         .execute()
         );
     }
+
+    public void linkGenre(String isbn, String genreId) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("INSERT INTO bookgenre (genreId, bookIsbn) VALUES (:genreId, :bookIsbn)")
+                        .bind("bookIsbn", isbn)
+                        .bind("genreId", genreId)
+                        .execute()
+        );
+    }
 }

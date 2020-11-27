@@ -16,6 +16,16 @@ public class AuthorService extends DatabaseService {
         );
     }
 
+    public Author geAuthorFromID(String id) {
+        List<Author> authors = jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM author WHERE id = :id")
+                        .bind("id", id)
+                        .mapToBean(Author.class)
+                        .list()
+        );
+        return authors.get(0);
+    }
+
     public void addAuthor(Author author) {
         jdbi.useHandle(handle ->
                 handle.createUpdate("INSERT INTO author (name) VALUES (:name)")

@@ -1,18 +1,17 @@
 package org.softwire.training.bookish.controllers;
 
+import org.softwire.training.bookish.models.database.Author;
 import org.softwire.training.bookish.models.database.Book;
 import org.softwire.training.bookish.models.page.BooksPageModel;
 import org.softwire.training.bookish.services.AuthorService;
 import org.softwire.training.bookish.services.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -38,16 +37,33 @@ public class BooksController {
     }
 
     @RequestMapping("/add-book")
-    RedirectView addBook(@RequestParam String isbn, @RequestParam String name, @RequestParam String description, @RequestParam String authorList ) {
+    RedirectView addBook(@RequestParam String isbn, @RequestParam String name, @RequestParam String description, @RequestParam String authors, @RequestParam String genres) {
 
-        String[] authorlist = authorList.split(",");
-        List<Integer> autherids = new ArrayList<>();
+        String[] authorlist = authors.split(",");
+        String[] genreList = genres.split(",");
 
         Book book = new Book(isbn,name,description);
         booksService.addBook(book);
 
-        for(String id :authorlist){
-            booksService.linkAuthor(isbn,id);
+        for(String author :authorlist){
+            boolean numeric =true;
+            try {
+                int numver = Integer.parseInt(author);
+            }catch (NumberFormatException n){
+                numeric=false;
+            }
+            if(!numeric){
+                AuthorService autherService = new AuthorService();
+                autherService.addAuthor(new Author(author));
+                List<Author> authorList = autherService.getAllAuthors();
+                Author authorObj = authorList.get(authorList.size() -1);
+                author = Integer.toString(authorObj.getId());
+            }
+            booksService.linkAuthor(isbn,author);
+        }
+
+        for(String id :genreList){
+            booksService.linkGenre(isbn,id);
         }
 
         return new RedirectView("/books");
