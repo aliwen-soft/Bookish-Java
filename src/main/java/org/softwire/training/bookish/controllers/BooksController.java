@@ -1,11 +1,8 @@
 package org.softwire.training.bookish.controllers;
 
 import org.softwire.training.bookish.models.database.Book;
-import org.softwire.training.bookish.models.database.Technology;
-import org.softwire.training.bookish.models.page.AboutPageModel;
-import org.softwire.training.bookish.models.page.BookPageModel;
-import org.softwire.training.bookish.services.BookService;
-import org.softwire.training.bookish.services.TechnologyService;
+import org.softwire.training.bookish.models.page.BooksPageModel;
+import org.softwire.training.bookish.services.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,30 +15,30 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/books")
-public class BookController {
+public class BooksController {
 
-    private final BookService bookService;
+    private final BooksService booksService;
 
     @Autowired
-    public BookController(BookService bookService) {
-        this.bookService = bookService;
+    public BooksController(BooksService booksService) {
+        this.booksService = booksService;
     }
 
     @RequestMapping("")
     ModelAndView booksPage() {
 
-        List<Book> allBooks = bookService.getAllBooks();
+        List<Book> allBooks = booksService.getAllBooks();
 
-        BookPageModel bookPageModel = new BookPageModel();
-        bookPageModel.setBooks(allBooks);
+        BooksPageModel booksPageModel = new BooksPageModel();
+        booksPageModel.setBooks(allBooks);
 
-        return new ModelAndView("books", "model", bookPageModel);
+        return new ModelAndView("books", "model", booksPageModel);
     }
 
     @RequestMapping("/add-book")
     RedirectView addBook(@ModelAttribute Book book) {
 
-        bookService.addBook(book);
+        booksService.addBook(book);
 
         return new RedirectView("/books");
     }
@@ -49,7 +46,7 @@ public class BookController {
     @RequestMapping("/delete-book")
     RedirectView deleteBook(@RequestParam String isbn ) {
 
-        bookService.deleteBook(isbn);
+        booksService.deleteBook(isbn);
 
         return new RedirectView("/books");
     }
