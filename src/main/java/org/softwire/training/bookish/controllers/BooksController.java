@@ -38,16 +38,20 @@ public class BooksController {
     }
 
     @RequestMapping("/add-book")
-    RedirectView addBook(@RequestParam String isbn, @RequestParam String name, @RequestParam String description, @RequestParam String authorList ) {
+    RedirectView addBook(@RequestParam String isbn, @RequestParam String name, @RequestParam String description, @RequestParam String authors, @RequestParam String genres) {
 
-        String[] authorlist = authorList.split(",");
-        List<Integer> autherids = new ArrayList<>();
+        String[] authorlist = authors.split(",");
+        String[] genreList = genres.split(",");
 
         Book book = new Book(isbn,name,description);
         booksService.addBook(book);
 
         for(String id :authorlist){
             booksService.linkAuthor(isbn,id);
+        }
+
+        for(String id :genreList){
+            booksService.linkGenre(isbn,id);
         }
 
         return new RedirectView("/books");
