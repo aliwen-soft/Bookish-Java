@@ -2,6 +2,7 @@ package org.softwire.training.bookish.controllers;
 
 import org.softwire.training.bookish.models.database.Author;
 import org.softwire.training.bookish.models.database.Book;
+import org.softwire.training.bookish.models.database.Genre;
 import org.softwire.training.bookish.models.page.SelectedBookPageModel;
 import org.softwire.training.bookish.services.SelectedBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,9 @@ public class SelectedBookController {
 
         Book selected = selectedBookService.getBook(isbn);
         List<Author> authors = selectedBookService.getAuthors(isbn);
+        List<Genre> genres = selectedBookService.getGenre(isbn);
 
-        SelectedBookPageModel selectedBookPageModel = new SelectedBookPageModel(selected,authors);
+        SelectedBookPageModel selectedBookPageModel = new SelectedBookPageModel(selected,authors,genres);
 
         return new ModelAndView("selectedBook", "model", selectedBookPageModel);
     }

@@ -4,17 +4,19 @@ import lombok.Getter;
 import lombok.Setter;
 import org.softwire.training.bookish.models.database.Author;
 import org.softwire.training.bookish.models.database.Book;
+import org.softwire.training.bookish.models.database.Genre;
 
 import java.util.List;
 
 @Getter
-@Setter
 public class SelectedBookPageModel {
-    private Book selectedBook;
-    private List<Author> authors;
+    private final Book selectedBook;
+    private final List<Author> authors;
+    private final List<Genre> genres;
 
-    public SelectedBookPageModel(Book selected, List<Author> authors) {
+    public SelectedBookPageModel(Book selected, List<Author> authors,List<Genre> genres) {
         this.selectedBook = selected;
         this.authors = authors;
+        this.genres = genres;
     }
 }

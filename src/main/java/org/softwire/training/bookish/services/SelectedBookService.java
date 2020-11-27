@@ -2,6 +2,7 @@ package org.softwire.training.bookish.services;
 
 import org.softwire.training.bookish.models.database.Author;
 import org.softwire.training.bookish.models.database.Book;
+import org.softwire.training.bookish.models.database.Genre;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,5 +28,15 @@ public class SelectedBookService extends DatabaseService{
                         .list()
         );
         return author;
+    }
+
+    public List<Genre> getGenre(String isbn) {
+        List<Genre> genres = jdbi.withHandle(handle ->
+                handle.createQuery("select id , name ,ageGroup from genre left join bookgenre on bookgenre.genreId = genre.id Where :bookisbn = (bookisbn) ;")
+                        .bind("bookisbn", isbn)
+                        .mapToBean(Genre.class)
+                        .list()
+        );
+        return genres;
     }
 }
