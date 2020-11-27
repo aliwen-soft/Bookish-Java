@@ -91,6 +91,40 @@
             <input type="submit" value="Delete book" />
         </div>
     </form>
+
+    <h2>Edit a Book:</h2>
+    <form th:action="@{/books/edit-book}" method="post" id="editForm">
+        <div class="add-tech-row">
+            <label>
+                <span>ISBN:</span>
+                <select name="isbn">
+                    <option
+                            th:each="book: ${model.books}"
+                            th:value="${book.isbn}"
+                            th:text="${book.isbn}"
+                    >
+                    </option>
+                </select>
+            </label>
+        </div>
+        <div class="add-tech-row">
+            <label>
+                <span>Title: </span>
+                <input type="text" name="name">
+            </label>
+        </div>
+        <div class="add-tech-row">
+            <label>
+                <span>Description: </span>
+                <input type="text" name="description">
+            </label>
+        </div>
+        <div class="add-tech-row">
+            <span><!-- spacer --></span>
+            <input type="submit" value="Edit book" />
+        </div>
+    </form>
+
 </div>
 
 </div>

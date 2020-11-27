@@ -38,16 +38,15 @@ public class BooksController {
     }
 
     @RequestMapping("/add-book")
-    RedirectView addBook(@RequestParam String isbn, @RequestParam String name, @RequestParam String description, @RequestParam String authorList ) {
+    RedirectView addBook(@RequestParam String isbn, @RequestParam String name, @RequestParam String description, @RequestParam String authorList) {
 
         String[] authorlist = authorList.split(",");
-        List<Integer> autherids = new ArrayList<>();
 
-        Book book = new Book(isbn,name,description);
+        Book book = new Book(isbn, name, description);
         booksService.addBook(book);
 
-        for(String id :authorlist){
-            booksService.linkAuthor(isbn,id);
+        for (String id : authorlist) {
+            booksService.linkAuthor(isbn, id);
         }
 
         return new RedirectView("/books");
@@ -62,10 +61,19 @@ public class BooksController {
     }
 
     @RequestMapping("/add-copy")
-    RedirectView addCopy(@RequestParam String isbn ) {
+    RedirectView addCopy(@RequestParam String isbn) {
 
         booksService.addCopy(isbn);
 
         return new RedirectView("/books");
     }
+
+    @RequestMapping("/edit-book")
+    RedirectView editBook(@RequestParam String isbn, @RequestParam String name, @RequestParam String description) {
+
+        booksService.editBook(isbn, name, description);
+
+        return new RedirectView("/books");
+    }
+
 }
