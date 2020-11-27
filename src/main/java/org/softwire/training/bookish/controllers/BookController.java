@@ -27,9 +27,9 @@ public class BookController {
     }
 
     @RequestMapping("")
-    ModelAndView bookPage() {
+    ModelAndView bookPage( @RequestParam("isbn") String isbn ) {
 
-        Book selected = bookService.getBook("2222222222222");
+        Book selected = bookService.getBook(isbn);
 
         BookPageModel bookPageModel = new BookPageModel();
         bookPageModel.setSelectedBook(selected);
