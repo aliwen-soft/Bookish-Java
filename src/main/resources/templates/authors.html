@@ -23,7 +23,7 @@
 
     <div th:each="author : ${model.authors}">
         <a th:href="${'/authors/delete-author?authorId=' + author.id}" class="delete-button"><i class='but-icon fa fa-lg fa-times'></i></a>
-
+        <a th:href="${'/author-books?authorId=' + author.id}" class="expand-button"><i class='but-icon fa fa-lg fa-plus'></i></a>
         <span th:text="${author.name}"></span>
     </div>
 

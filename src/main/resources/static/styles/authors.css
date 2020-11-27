@@ -42,7 +42,23 @@ h2 {
   opacity: 0.5
 }
 
+.expand-button {
+  position: relative;
+  height: 14px;
+  width: 14px;
+  background-color: #008000;
+  margin: auto;
+  cursor: pointer;
+  border-radius: 13px;
+  opacity: 0.5
+}
+
 .fa-times {
+  margin: 4px;
+  color: #fff;
+}
+
+.fa-plus {
   margin: 4px;
   color: #fff;
 }
@@ -51,6 +67,9 @@ h2 {
     opacity: 1;
 }
 
+.expand-button:hover {
+    opacity: 1;
+}
 
 .add-tech-row {
     padding: 5px 0;
