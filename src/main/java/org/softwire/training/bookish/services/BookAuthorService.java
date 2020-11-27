@@ -12,7 +12,8 @@ public class BookAuthorService extends DatabaseService {
     public List<Book> getAllAuthorsBooks(int authorId) {
         return jdbi.withHandle(handle ->
                 handle.createQuery("SELECT isbn, name, description FROM book LEFT JOIN bookauthor ON " +
-                        "bookauthor.bookIsbn = book.isbn WHERE authorId = " + authorId + ";")
+                        "bookauthor.bookIsbn = book.isbn WHERE authorId = :authorId;")
+                        .bind("authorId", authorId)
                         .mapToBean(Book.class)
                         .list()
         );
@@ -20,7 +21,8 @@ public class BookAuthorService extends DatabaseService {
 
     public String getAuthorsName(int authorId) {
         Author author = jdbi.withHandle(handle ->
-                handle.createQuery("SELECT * FROM author WHERE author.id = " + authorId + ";")
+                handle.createQuery("SELECT * FROM author WHERE author.id = :authorId;")
+                        .bind("authorId", authorId)
                         .mapToBean(Author.class)
                         .list()
                         .get(0)
