@@ -41,4 +41,13 @@ public class BooksService extends DatabaseService{
                         .execute()
         );
     }
+
+    public void linkAuthor(String isbn, String authorid) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("INSERT INTO bookauthor (authorId, bookIsbn) VALUES (:authorId, :bookIsbn)")
+                        .bind("bookIsbn", isbn)
+                        .bind("authorId", authorid)
+                        .execute()
+        );
+    }
 }
