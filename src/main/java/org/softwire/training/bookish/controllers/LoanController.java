@@ -1,8 +1,10 @@
 package org.softwire.training.bookish.controllers;
 
+import org.softwire.training.bookish.models.database.BookCopy;
 import org.softwire.training.bookish.models.database.Loan;
 import org.softwire.training.bookish.models.database.Member;
 import org.softwire.training.bookish.models.page.LoansPageModel;
+import org.softwire.training.bookish.services.CopiesService;
 import org.softwire.training.bookish.services.LoanService;
 import org.softwire.training.bookish.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +23,13 @@ public class LoanController {
 
     private final LoanService loanService;
     private final MemberService memberService;
+    private final CopiesService copiesService;
 
     @Autowired
-    public LoanController(LoanService loanService, MemberService memberService) {
+    public LoanController(LoanService loanService, MemberService memberService, CopiesService copiesService) {
         this.loanService = loanService;
         this.memberService = memberService;
+        this.copiesService = copiesService;
     }
 
     @RequestMapping("")
@@ -33,21 +37,24 @@ public class LoanController {
 
         List<Loan> allLoans = loanService.getAllLoans();
         List<Member> allMembers = memberService.getAllMembers();
+        List<BookCopy> availableBookCopies = copiesService.getAvailableBookCopies();
 
         LoansPageModel loansPageModel = new LoansPageModel();
         loansPageModel.setLoans(allLoans);
         loansPageModel.setMembers(allMembers);
+        loansPageModel.setBookCopies(availableBookCopies);
 
         return new ModelAndView("loans", "model", loansPageModel);
     }
 
-//    @RequestMapping("/add-loan")
+    @RequestMapping("/add-loan")
 //    RedirectView addLoan(@ModelAttribute Loan loan) {
-//
-//        loanService.addLoan(loan);
-//
-//        return new RedirectView("/members");
-//    }
+    RedirectView addLoan(@RequestParam int member_id, @RequestParam int bookCopy_id) {
+
+        loanService.addLoan(member_id, bookCopy_id);
+
+        return new RedirectView("/members");
+    }
 
     @RequestMapping("/edit-loan")
     RedirectView editLoan(@RequestParam int loanId, int status) {

@@ -10,6 +10,7 @@ import java.sql.Date;
 public class BookCopy {
     private int id;
     private String bookisbn;
+    private String name;
     private int status;
     private Date dueDate;
 }

@@ -41,10 +41,9 @@
                 <div class="add-member-row">
                     <label>
                         <span>Member: </span>
-                        <select>
-<!--                            <option>option1</option>-->
+                        <select name="member_id">
                             <option th:each="member : ${model.members}" th:value="${member.id}">
-                                <span th:text="${member.name}"></span>
+                                <span th:text="${member.name}" ></span>
                             </option>
                         </select>
                     </label>
@@ -52,12 +51,16 @@
                 <div class="add-member-row">
                     <label>
                         <span>Book: </span>
-                        <input type="text" name="name">
+                        <select name="bookCopy_id">
+                            <option th:each="bookCopy : ${model.bookCopies}" th:value="${bookCopy.id}">
+                                <span th:text="${bookCopy.name}"></span>
+                            </option>
+                        </select>
                     </label>
                 </div>
                 <div class="add-member-row">
                     <span><!-- spacer --></span>
-                    <input type="submit" value="Add member" />
+                    <input type="submit" value="Add Loan" />
                 </div>
             </form>
         </div>
