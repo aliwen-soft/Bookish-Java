@@ -52,9 +52,11 @@ public class MemberController {
     }
 
     @RequestMapping("/edit-member")
-    RedirectView editMember(@RequestParam int memberId, String memberName) {
+    RedirectView editMember(@RequestParam String memberId, @RequestParam String memberName) {
 
-        memberService.editMember(memberId, memberName);
+        int memberInt = Integer.parseInt(memberId);
+
+        memberService.editMember(memberInt, memberName);
 
         return new RedirectView("/members");
     }
