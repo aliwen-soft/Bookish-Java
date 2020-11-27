@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/styles/general.css"/>
     <link rel="stylesheet" href="/styles/navbar.css"/>
     <link rel="stylesheet" href="/styles/about.css"/>
+    <script type="text/javascript" th:src="@{/js/editBook.js}" defer></script>
 </head>
 
 <body>
@@ -19,7 +20,7 @@
 
 <div class="container">
     <h2> Our books </h2>
-    <table>
+    <table id="booksTable">
     <tr>
         <th>ISBN</th>
         <th>Title</th>
@@ -97,7 +98,7 @@
         <div class="add-tech-row">
             <label>
                 <span>ISBN:</span>
-                <select name="isbn">
+                <select name="isbn" id="isbn">
                     <option
                             th:each="book: ${model.books}"
                             th:value="${book.isbn}"
@@ -110,13 +111,13 @@
         <div class="add-tech-row">
             <label>
                 <span>Title: </span>
-                <input type="text" name="name">
+                <input type="text" name="name" id="nameInput">
             </label>
         </div>
         <div class="add-tech-row">
             <label>
                 <span>Description: </span>
-                <input type="text" name="description">
+                <input type="text" name="description" id="descriptionInput">
             </label>
         </div>
         <div class="add-tech-row">
