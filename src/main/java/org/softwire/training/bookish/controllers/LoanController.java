@@ -53,7 +53,7 @@ public class LoanController {
 
         loanService.addLoan(member_id, bookCopy_id);
 
-        return new RedirectView("/members");
+        return new RedirectView("/loans");
     }
 
     @RequestMapping("/edit-loan")

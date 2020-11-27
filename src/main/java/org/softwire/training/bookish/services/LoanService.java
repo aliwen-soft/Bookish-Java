@@ -27,12 +27,13 @@ public class LoanService extends DatabaseService {
     public void addLoan(int memberId, int copyId) {
         Timestamp loanTime = new Timestamp(System.currentTimeMillis());
         java.sql.Date todaysDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-//        java.sql.Date dueDate = this.addDays(todaysDate, 14);
-        java.sql.Date dueDate = new Date(2020-12-01);
+        java.sql.Date dueDate = this.addDays(todaysDate, 14);
+//        java.sql.Date dueDate = new Date(2020-12-01);
+//        String dueDate = "2020-12-01";
 
         jdbi.useHandle(handle ->
             handle.createUpdate("INSERT INTO loan (memberId, copyId, loanTime, dueDate, status)\n" +
-                            "VALUES (:memberId, :copyId, :loanTime, 'dueDate', '1');\n")
+                            "VALUES (:memberId, :copyId, :loanTime, :dueDate, '1');\n")
                             .bind("memberId", memberId)
                             .bind("copyId", copyId)
                             .bind("loanTime", loanTime)
