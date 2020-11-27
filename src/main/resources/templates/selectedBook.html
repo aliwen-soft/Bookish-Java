@@ -19,8 +19,14 @@
 
 <div class="container">
     <h2 th:text="${model.selectedBook.name}" >  </h2>
-    <p> isbn : <span th:text="${model.selectedBook.isbn}"> </span>  </p>
-    <p> description : <span th:text="${model.selectedBook.description}"> </span>  </p>
+    <p> ISBN : <span th:text="${model.selectedBook.isbn}"> </span>  </p>
+    <p> Sescription : <span th:text="${model.selectedBook.description}"> </span>  </p>
+    <p> Authors : </p>
+    <ul th:each="author : ${model.authors}">
+        <li th:text="${author.name}"></li>
+    </ul>
+
+
 
 </div>
 
