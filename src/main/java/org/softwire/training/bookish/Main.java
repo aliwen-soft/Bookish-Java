@@ -22,10 +22,22 @@ public class Main {
         return pw;
     }
 
+    public static String getUser(){
+        Map<String, String> env = System.getenv();
+        String user = env.get("SQLUSER");
+        return user;
+    }
+
+    public static String getHost(){
+        Map<String, String> env = System.getenv();
+        String host = env.get("SQLHOST");
+        return host;
+    }
+
     public static void main(String[] args) throws SQLException {
-        String hostname = "localhost:3306";
+        String hostname = getHost();
         String database = "bookish";
-        String user = "root";
+        String user = getUser();
         String password = getPW();
 
         String connectionString = "jdbc:mysql://" + hostname + "/" + database + "?user=" + user + "&password=" + password + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT&useSSL=false";
