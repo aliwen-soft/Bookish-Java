@@ -26,7 +26,7 @@
             <th>Description</th>
         </tr>
         <tr th:each="book : ${model.books}" >
-            <td th:text="${book.isbn}"></td>
+            <td ><a th:href="@{/selectedBook(isbn=${book.isbn})}" th:text="${book.isbn}"></a></td>
             <td th:text="${book.name}"></td>
             <td th:text="${book.description}"></td>
         </tr>
