@@ -23,7 +23,7 @@ public class CopiesService extends DatabaseService {
         return jdbi.withHandle(handle ->
                 handle.createQuery("SELECT bookcopy.id, isbn, name, dueDate, status FROM bookcopy LEFT " +
                         "JOIN book ON book.isbn = bookcopy.bookisbn LEFT JOIN loan ON loan.copyid = " +
-                        "bookcopy.id WHERE status = 0")
+                        "bookcopy.id")
                         .mapToBean(BookCopy.class)
                         .list()
         );
