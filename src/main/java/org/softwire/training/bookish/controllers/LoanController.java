@@ -1,8 +1,10 @@
 package org.softwire.training.bookish.controllers;
 
 import org.softwire.training.bookish.models.database.Loan;
+import org.softwire.training.bookish.models.database.Member;
 import org.softwire.training.bookish.models.page.LoansPageModel;
 import org.softwire.training.bookish.services.LoanService;
+import org.softwire.training.bookish.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,19 +20,23 @@ import java.util.List;
 public class LoanController {
 
     private final LoanService loanService;
+    private final MemberService memberService;
 
     @Autowired
-    public LoanController(LoanService loanService) {
+    public LoanController(LoanService loanService, MemberService memberService) {
         this.loanService = loanService;
+        this.memberService = memberService;
     }
 
     @RequestMapping("")
     ModelAndView loans() {
 
         List<Loan> allLoans = loanService.getAllLoans();
+        List<Member> allMembers = memberService.getAllMembers();
 
         LoansPageModel loansPageModel = new LoansPageModel();
         loansPageModel.setLoans(allLoans);
+        loansPageModel.setMembers(allMembers);
 
         return new ModelAndView("loans", "model", loansPageModel);
     }

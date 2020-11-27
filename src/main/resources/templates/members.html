@@ -42,6 +42,17 @@
                     </label>
                 </div>
                 <div class="add-member-row">
+                    <label>
+                        <span>Member: </span>
+                        <select>
+                            <option>option1</option>
+                            <option th:each="member : ${model.members}" th:value="${member.id}">
+                                <span th:text="${member.name}"></span>
+                            </option>
+                        </select>
+                    </label>
+                </div>
+                <div class="add-member-row">
                     <span><!-- spacer --></span>
                     <input type="submit" value="Add member" />
                 </div>
