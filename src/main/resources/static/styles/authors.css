@@ -1,0 +1,77 @@
+
+h2 {
+    font-family: "Segoe UI", sans-serif;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+
+.technology-list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.technology {
+    width: 30%;
+    background-color: #e9ecef;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.technology img {
+    max-width: 100%;
+    max-height: 150px;
+}
+
+.delete-button {
+  position: relative;
+  height: 14px;
+  width: 14px;
+  background-color: #e74c3c;
+  margin: auto;
+  cursor: pointer;
+  border-radius: 13px;
+  opacity: 0.5
+}
+
+.fa-times {
+  margin: 4px;
+  color: #fff;
+}
+
+.delete-button:hover {
+    opacity: 1;
+}
+
+
+.add-tech-row {
+    padding: 5px 0;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.add-tech-row label {
+    display: flex;
+    flex-direction: row;
+}
+.add-tech-row span {
+    min-width: 100px;
+    display: inline-block;
+}
+
+.add-tech-row input[type="text"] {
+    flex-grow: 1;
+}
+.add-tech-row input[type="submit"] {
+    background-color: transparent;
+    border: 1px solid dodgerblue;
+    border-radius: 15px;
+    padding: 5px 15px;
+}
