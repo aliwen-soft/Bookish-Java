@@ -12,4 +12,11 @@ public class BookCopy {
     private String bookisbn;
     private int status;
     private Date dueDate;
+
+    public String getStatusMessage() {
+        if (status == 1) {
+            return "Loaned";
+        }
+        return "Available";
+    }
 }

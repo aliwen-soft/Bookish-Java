@@ -3,8 +3,6 @@ package org.softwire.training.bookish.models.database;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.beans.ConstructorProperties;
-
 @Getter
 @Setter
 public class Book {

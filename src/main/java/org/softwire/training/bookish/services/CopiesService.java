@@ -1,5 +1,6 @@
 package org.softwire.training.bookish.services;
 
+import org.softwire.training.bookish.models.database.Book;
 import org.softwire.training.bookish.models.database.BookCopy;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +19,16 @@ public class CopiesService extends DatabaseService {
                         .list()
         );
     }
+
+    public String getBookName(String isbn) {
+        Book book = jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM book WHERE book.isbn = :isbn;")
+                        .bind("isbn", isbn)
+                        .mapToBean(Book.class)
+                        .list()
+                        .get(0)
+        );
+        return book.getName();
+    }
+
 }
