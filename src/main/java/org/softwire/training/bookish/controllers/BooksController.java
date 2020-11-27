@@ -50,4 +50,12 @@ public class BooksController {
 
         return new RedirectView("/books");
     }
+
+    @RequestMapping("/add-copy")
+    RedirectView addCopy(@RequestParam String isbn ) {
+
+        booksService.addCopy(isbn);
+
+        return new RedirectView("/books");
+    }
 }
