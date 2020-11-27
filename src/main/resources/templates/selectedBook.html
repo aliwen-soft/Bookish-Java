@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.BookPageModel"-->
+<!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.SelectedBookPageModel"-->
 
 <head>
     <title>Bookish - About Us</title>
@@ -21,7 +21,7 @@
     <h2 th:text="${model.selectedBook.name}" >  </h2>
     <p> isbn : <span th:text="${model.selectedBook.isbn}"> </span>  </p>
     <p> description : <span th:text="${model.selectedBook.description}"> </span>  </p>
-    
+
 </div>
 
 </div>

@@ -8,6 +8,6 @@ import java.util.List;
 
 @Getter
 @Setter
-public class BookPageModel {
+public class SelectedBookPageModel {
     private Book selectedBook;
 }

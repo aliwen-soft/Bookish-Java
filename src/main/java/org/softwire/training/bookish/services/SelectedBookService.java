@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BookService extends DatabaseService{
+public class SelectedBookService extends DatabaseService{
 
     public Book getBook(String isbn) {
         List<Book> books = jdbi.withHandle(handle ->
