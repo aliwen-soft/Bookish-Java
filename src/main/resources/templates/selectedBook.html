@@ -29,6 +29,7 @@
     <ul th:each="genre : ${model.genres}">
         <li th:text="${genre.name}"></li>
     </ul>
+    <p> Number of copys in total: <span th:text="${model.bookCopies}"> </span>  </p>
 
 
 

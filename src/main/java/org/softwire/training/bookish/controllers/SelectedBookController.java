@@ -30,8 +30,9 @@ public class SelectedBookController {
         Book selected = selectedBookService.getBook(isbn);
         List<Author> authors = selectedBookService.getAuthors(isbn);
         List<Genre> genres = selectedBookService.getGenre(isbn);
+        int copys = selectedBookService.getCopyNums(isbn);
 
-        SelectedBookPageModel selectedBookPageModel = new SelectedBookPageModel(selected,authors,genres);
+        SelectedBookPageModel selectedBookPageModel = new SelectedBookPageModel(selected,authors,genres,copys);
 
         return new ModelAndView("selectedBook", "model", selectedBookPageModel);
     }
