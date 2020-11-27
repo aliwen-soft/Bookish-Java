@@ -30,6 +30,19 @@
                     <td>
                         <a th:href="${'/members/delete-member?memberId=' + member.id}" class="delete-button">X</a>
                     </td>
+                    <td>
+                        <form th:action="@{/members/edit-member}" method="post">
+                            <input type="hidden" name="memberId" th:value="${member.id}" />
+                        <div>
+                            <label>
+                                <input type="text" name="memberName">
+                            </label>
+                        </div>
+                        <div >
+                            <input type="submit" value="Edit" />
+                        </div>
+                        </form>
+                    </td>
                 </tr>
             </table>
 
