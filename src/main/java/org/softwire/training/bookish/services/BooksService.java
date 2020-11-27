@@ -33,4 +33,12 @@ public class BooksService extends DatabaseService{
                         .execute()
         );
     }
+
+    public void addCopy(String isbn) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("INSERT INTO bookcopy (bookisbn) VALUES (:bookisbn)")
+                        .bind("bookisbn", isbn)
+                        .execute()
+        );
+    }
 }

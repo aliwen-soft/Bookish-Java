@@ -58,6 +58,20 @@
         </div>
     </form>
 
+    <h2>Add a Copy:</h2>
+    <form th:action="@{/books/add-copy}" method="post">
+        <div class="add-tech-row">
+            <label>
+                <span>ISBN: </span>
+                <input type="text" name="isbn">
+            </label>
+        </div>
+        <div class="add-tech-row">
+            <span><!-- spacer --></span>
+            <input type="submit" value="Add copy" />
+        </div>
+    </form>
+
     <h2>Delete a Book:</h2>
     <form th:action="@{/books/delete-book}" method="post">
         <div class="add-tech-row">
